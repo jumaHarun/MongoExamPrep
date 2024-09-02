@@ -14,7 +14,7 @@
 ### Section 1: MONGODB OVERVIEW AND THE DOCUMENT MODEL (8%)
 
 - 1.1 Identify the set of value types MongoDB BSON supports.
-- 1.2 Given three documents that are of dierent shape, identify which can co-exist in the
+- 1.2 Given three documents that are of different shapes, identify which can co-exist in the
   same collection.
 
 ### Section 2: CRUD (51%)

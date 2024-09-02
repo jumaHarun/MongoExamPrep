@@ -17,20 +17,17 @@ if (!uri) {
 
 const client = new MongoClient(uri);
 const database = "examprep";
+const collection_name = "countries";
+
+const countriesCollection = client.db(database).collection(collection_name);
 
 const connectToDatabase = async () => {
   try {
     await client.connect();
-    const collections = await client.db(database).collections();
 
     console.log(
       `Connected to the ${database} database 🌍 \nFull connection string: ${uri}`
     );
-    if (collections.length > 0) {
-      console.log(`Collections: ${collections}`);
-    } else {
-      console.log("No collections in database!");
-    }
   } catch (err) {
     console.error(`Error connecting to the databases: ${err}`);
   }

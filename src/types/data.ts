@@ -1,4 +1,3 @@
-// data.json Types
 type TData = Root[];
 export default TData;
 

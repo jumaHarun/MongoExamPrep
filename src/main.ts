@@ -1,6 +1,8 @@
 import express, { Application } from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, Document } from "mongodb";
 import { config } from "dotenv";
+import TData from "./types/data.ts";
+import countriesData from "./db/data.json";
 
 config();
 
@@ -37,6 +39,8 @@ const connectToDatabase = async () => {
 const main = async () => {
   try {
     await connectToDatabase();
+
+    // await loadSampleData(countriesData);
   } catch (err) {
     console.error(`Error in main: ${err}`);
   } finally {
@@ -44,3 +48,14 @@ const main = async () => {
   }
 };
 main();
+
+async function loadSampleData<T extends TData & Document>(docs: T) {
+  const coll = "countries";
+  try {
+    const res = await client.db(database).collection(coll).insertMany(docs);
+    console.log(`Inserted ${res.insertedCount} documents.`);
+    console.log(res);
+  } catch (err) {
+    console.error(`Error loading sample data: ${err}`);
+  }
+}

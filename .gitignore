@@ -143,4 +143,6 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
-quiz.md
+*.txt
+v*
+*.pdf

@@ -19,7 +19,9 @@ const coll = db.collection("sales");
 const connectToDB = async () => {
   try {
     await client.connect();
-    console.log(`Connected to the ${db.databaseName} database `);
+    console.log(
+      `Connected to the ${db.databaseName} database\nUsing the ${coll.collectionName} collection.`
+    );
   } catch (error) {
     console.error(error);
     return;

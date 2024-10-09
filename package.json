@@ -4,7 +4,7 @@
   "main": "dist/main.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --exec tsx src/main.ts",
+    "dev": "nodemon --exec tsx",
     "test": "jest",
     "start": "tsx dist/main.ts",
     "build": "tsc"

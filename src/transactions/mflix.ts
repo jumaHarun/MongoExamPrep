@@ -72,3 +72,26 @@ const connectToDB = async () => {
  * `sample_mflix.movies` collection to decrement the number of comments for
  * the related movie.
  */
+
+// IIFE main function
+
+(async () => {
+  try {
+    await connectToDB();
+    // Basic Transaction
+    await insertCommentAndIncrementCommentCount(
+      "This is a placeholder comment."
+    );
+    // Transaction with Error Handling
+
+    // Insert and Update Transaction
+
+    // User and Session Transaction
+
+    // Delete and Update Transaction
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.close();
+  }
+})();

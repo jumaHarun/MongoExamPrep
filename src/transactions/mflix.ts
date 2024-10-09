@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import { Document, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 
 config();
@@ -32,15 +32,6 @@ const connectToDB = async () => {
   }
 };
 
-(async () => {
-  try {
-    await connectToDB();
-  } catch (error) {
-    console.error(error);
-  } finally {
-    await client.close();
-  }
-})();
 // Transaction Questions
 
 /** Basic Transaction

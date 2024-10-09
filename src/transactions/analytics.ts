@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import { Document, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 
 config();
@@ -30,27 +30,6 @@ const connectToDB = async () => {
     return;
   }
 };
-
-(async () => {
-  try {
-    await connectToDB();
-    // Multi-Document Transaction
-
-    // Complex Transaction
-
-    // Transaction with Aggregation
-
-    // Transfer Funds Transaction
-
-    // Account and Transaction Update
-
-    // Aggregate and Update Transaction
-  } catch (error) {
-    console.error(error);
-  } finally {
-    await client.close();
-  }
-})();
 
 // Transaction Questions
 
@@ -100,3 +79,26 @@ const connectToDB = async () => {
  * using an aggregation pipeline and updates the `total_transactions` field
  * in the `sample_analytics.accounts` collection with this total.
  */
+
+// IIFE main function
+
+(async () => {
+  try {
+    await connectToDB();
+    // Multi-Document Transaction
+
+    // Complex Transaction
+
+    // Transaction with Aggregation
+
+    // Transfer Funds Transaction
+
+    // Account and Transaction Update
+
+    // Aggregate and Update Transaction
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.close();
+  }
+})();

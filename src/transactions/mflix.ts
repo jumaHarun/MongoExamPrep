@@ -41,34 +41,43 @@ const connectToDB = async () => {
     await client.close();
   }
 })();
-/**
+// Transaction Questions
+
+/** Basic Transaction
+ *
+ * Write a transaction that inserts a new comment into the
+ * `sample_mflix.comments` collection and updates the `sample_mflix.movies`
+ * collection to increment the `comments_count` field for the related movie
+ */
+
+/** Transaction with Error Handling
+ *
  * Write a transaction that inserts a new user into the `sample_mflix.users`
  * collection and a new session into the `sample_mflix.sessions` collection.
- * Include error handling to ensure that if one operation fails, the entire
+ * Use `try-catch` blocks to ensure that if one operation fails, the entire
  * transaction is rolled back.
  */
 
-/**
+/** Insert and Update Transaction
+ *
  * Write a transaction that inserts a new comment into the
- * `sample_mflix.comments` collection and updates the `sample_mflix.movies`
- * collection to increment the number of comments for the related movie.
+ * `sample_mflix.comments` collection and updates the `comments_count` field
+ * in the `sample_mflix.movies` collection to increment the number of
+ * comments for the related movie.
  */
 
-/**
- * Write a transaction that inserts a new comment into the
- * `sample_mflix.comments` collection and updates the `sample_mflix.movies`
- * collection to increment the number of comments for the related movie.
+/** User and Session Transaction
+ *
+ * Create a transaction that inserts a new user into the `sample_mflix.users`
+ * collection and a new session into the `sample_mflix.sessions` collection.
+ * Use `try-catch` blocks to ensure that the transaction is rolled back if
+ * either operation fails.
  */
 
-/**
- * Create a transaction that inserts a new user into the
- * `sample_mflix.users` collection and a new session into the
- * `sample_mflix.sessions` collection. Ensure that the transaction is rolled
- * back if either operation fails.
- */
-
-/**
- * Write a transaction that deletes a comment from the
- * `sample_mflix.comments` collection and updates the `sample_mflix.movies`
- * collection to decrement the number of comments for the related movie.
+/** Delete and Update Transaction
+ *
+ * Write a transaction that deletes a comment from the `sample_mflix.comments`
+ * collection and updates the `comments_count` field in the
+ * `sample_mflix.movies` collection to decrement the number of comments for
+ * the related movie.
  */

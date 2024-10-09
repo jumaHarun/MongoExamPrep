@@ -34,48 +34,69 @@ const connectToDB = async () => {
 (async () => {
   try {
     await connectToDB();
+    // Multi-Document Transaction
+
+    // Complex Transaction
+
+    // Transaction with Aggregation
+
+    // Transfer Funds Transaction
+
+    // Account and Transaction Update
+
+    // Aggregate and Update Transaction
   } catch (error) {
     console.error(error);
   } finally {
     await client.close();
   }
 })();
-/**
+
+// Transaction Questions
+
+/** Multi-Document Transaction
+ *
  * Create a transaction that transfers an amount from one account to another
  * in the `sample_analytics.transactions` collection. Ensure that the
- * transaction updates the `sample_analytics.accounts` collection to
- * reflect the new balances.
+ * transaction updates the `balance` field in the `sample_analytics.accounts`
+ * collection to reflect the new balances.
  */
 
-/**
- * Develop a transaction that updates the `sample_analytics.accounts`
- * collection to add a new product to an account's product list and inserts
- * a corresponding transaction into the `sample_analytics.transactions`
+/** Complex Transaction
+ * Develop a transaction that updates the `products` field in the
+ * `sample_analytics.accounts` collection to add a new product and inserts a
+ * corresponding transaction into the `sample_analytics.transactions`
  * collection.
  */
 
-/**
- * Write a transaction that aggregates the total amount of transactions for
- *  a specific account in the `sample_analytics.transactions` collection
- * and updates the `sample_analytics.accounts` collection with this total.
+/** Transaction with Aggregation
+ *
+ * Write a transaction that calculates the total amount of transactions for
+ * a specific account in the `sample_analytics.transactions` collection
+ * using an aggregation pipeline and updates the `total_transactions` field
+ * in the `sample_analytics.accounts` collection with this total.
  */
 
-/**
+/** Transfer Funds Transaction
+ *
  * Develop a transaction that transfers an amount from one account to
  * another in the `sample_analytics.transactions` collection. Ensure that
- * the transaction updates the `sample_analytics.accounts` collection to
- * reflect the new balances.
+ * the transaction updates the `balance` field in the
+ * `sample_analytics.accounts` collection to reflect the new balances.
  */
 
-/**
- * Write a transaction that updates the `sample_analytics.accounts`
- * collection to add a new product to an account's product list and inserts
- *  a corresponding transaction into the `sample_analytics.transactions`
+/** Account and Transaction Update
+ *
+ * Write a transaction that updates the `products` field in the
+ * `sample_analytics.accounts` collection to add a new product and inserts a
+ * corresponding transaction into the `sample_analytics.transactions`
  * collection.
  */
 
-/**
- *Create a transaction that aggregates the total amount of transactions for
- a specific account in the `sample_analytics.transactions` collection and 
- updates the `sample_analytics.accounts` collection with this total.
+/** Aggregate and Update Transaction
+ *
+ * Create a transaction that calculates the total amount of transactions for
+ * a specific account in the `sample_analytics.transactions` collection
+ * using an aggregation pipeline and updates the `total_transactions` field
+ * in the `sample_analytics.accounts` collection with this total.
  */

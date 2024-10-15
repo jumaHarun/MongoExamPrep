@@ -1,16 +1,13 @@
 import express, { Application } from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, TransactionOptions } from "mongodb";
 import { config } from "dotenv";
 
 config();
 const app: Application = express();
 app.use(express.json());
 
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error("Missing MONGODB_URI in the .env file");
-}
-
+const uri =
+  "mongodb://adminZiro:admin@localhost:40000,localhost:40001,127.0.0.1:40002/?replicaSet=myapp&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1&w=majority&wtimeoutMS=2000";
 const client = new MongoClient(uri);
 
 const db = client.db("sample_analytics");
@@ -30,6 +27,29 @@ const connectToDB = async () => {
     return;
   }
 };
+
+// IIFE main function
+
+(async () => {
+  try {
+    await connectToDB();
+    // Multi-Document Transaction
+
+    // Complex Transaction
+
+    // Transaction with Aggregation
+
+    // Transfer Funds Transaction
+
+    // Account and Transaction Update
+
+    // Aggregate and Update Transaction
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.close();
+  }
+})();
 
 // Transaction Questions
 
@@ -55,6 +75,50 @@ const connectToDB = async () => {
  * using an aggregation pipeline and updates the `total_transactions` field
  * in the `sample_analytics.accounts` collection with this total.
  */
+async function getTotalTransactionAmountForAccount(accountId: number) {
+  const session = client.startSession();
+  const transactionOptions: TransactionOptions = {
+    readPreference: "primary",
+    readConcern: { level: "local" },
+    writeConcern: { w: "majority" },
+  };
+
+  try {
+    const txnRes = await session.withTransaction(async () => {
+      // Aggregrate total amount for buys and sells
+      const pipeline: Document[] = [];
+
+      const cursor = transactionsCollection.aggregate(pipeline, {
+        maxTimeMS: 60_000,
+        allowDiskUse: true,
+      });
+
+      for await (const doc of cursor) {
+        console.log(doc);
+      }
+
+      // Populate total_transactions field with results {buys: number, sells: number}
+      return "Transaction committed.";
+    }, transactionOptions);
+
+    console.log("\nCommiting transaction...");
+
+    if (txnRes) {
+      console.log("\nTransaction committed.");
+    } else {
+      console.log("\nThe transaction was intentionally aborted.");
+    }
+  } catch (error) {
+    console.error("\nTransaction failed due to an unexpected error: ", error);
+
+    await session.abortTransaction();
+    console.error("Transaction aborted!");
+    return;
+  } finally {
+    await session.endSession();
+    await client.close();
+  }
+}
 
 /** Transfer Funds Transaction
  *
@@ -79,26 +143,3 @@ const connectToDB = async () => {
  * using an aggregation pipeline and updates the `total_transactions` field
  * in the `sample_analytics.accounts` collection with this total.
  */
-
-// IIFE main function
-
-(async () => {
-  try {
-    await connectToDB();
-    // Multi-Document Transaction
-
-    // Complex Transaction
-
-    // Transaction with Aggregation
-
-    // Transfer Funds Transaction
-
-    // Account and Transaction Update
-
-    // Aggregate and Update Transaction
-  } catch (error) {
-    console.error(error);
-  } finally {
-    await client.close();
-  }
-})();
